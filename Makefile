@@ -4,6 +4,8 @@ DIR_LOX := lox
 SRC := $(wildcard $(DIR_LOX)/*.c)
 OBJ := $(patsubst %.c,%.o,$(SRC))
 
+OPCODES_INCLUDE:=$(DIR_LOX)/include/chunk.h
+
 CC := gcc
 STRIP := strip
 
@@ -15,6 +17,8 @@ CPPFLAGS := $(INCLUDES)
 .PHONY: all clean
 
 all:$(TARGET)
+
+$(SRC):$(OPCODES_INCLUDE)
 
 $(OBJ):%.o:%.c
 	@echo "CC $(basename $<)"
